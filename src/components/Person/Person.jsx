@@ -1,16 +1,15 @@
 export function Person({ person }) {
-  const marriedMessage = `${person.partnerName} is my ${person.sex === 'm' ? 'wife' : 'husband'}`;
-  const notMarriedMessage = `I am not married`;
-  const ageMessage = `I am ${person.age}`;
+  const { name, age, sex, isMarried, partnerName } = person;
 
   return (
     <section className="Person">
-      <h2 className="Person__name">My name is {person.name}</h2>
-      <p className={person.age ? 'Person__age' : ''}>
-        {person.age ? ageMessage : ''}
-      </p>
+      <h2 className="Person__name">My name is {name}</h2>
+      {age && <p className="Person__age">I am {age}</p>}
+
       <p className="Person__partner">
-        {person.isMarried ? marriedMessage : notMarriedMessage}
+        {isMarried
+          ? `${partnerName} is my ${sex === 'm' ? 'wife' : 'husband'}`
+          : `I am not married`}
       </p>
     </section>
   );
